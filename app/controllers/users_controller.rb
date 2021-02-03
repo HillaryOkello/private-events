@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
     # Set a session value
     session[:current_user_id] = @user.id
     session[:current_user_name] = @user.name
-    
+
     if @user.save
       redirect_to @user
     else
