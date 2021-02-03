@@ -1,0 +1,7 @@
+<h1>Sing in</h1>
+
+<%= form_for @session do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.submit "Sign in" %>
+<% end %>
