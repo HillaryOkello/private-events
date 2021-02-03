@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # Set a session value
     session[:current_user_id] = @user.id
-    session[:current_user_name] = @user.name
 
     if @user.save
       redirect_to @user

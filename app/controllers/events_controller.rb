@@ -8,7 +8,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @user = User.find(session[current_user_id])
+    @event = @user.events.build(events_params)
     if @event.save
       redirect_to event_path(@event)
     else
