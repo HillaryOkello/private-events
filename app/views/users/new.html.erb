@@ -1,5 +1,7 @@
-<h1>Sign up</h1>
-<% form_with model: @user do |f| %>
+<h1>Sing up</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit "Create User" %>
 <% end %>
