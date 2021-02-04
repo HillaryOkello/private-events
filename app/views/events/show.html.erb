@@ -2,5 +2,12 @@
   <h3><%= @event.name %></h3>
   <p><%= @event.description %></p>
   <span><%= @event.creator.name %></span>
+  <% if @event.registrations.empty? %>
+    <p>Event has no events attendees</p>
+  <% else %>
+    <% @event.registrations.each do |registrations| %>
+      <li><%=link_to registrations.name, registrations_path(registrations) %></li>
+     <% end %>
+  <% end %>
 </div>
 
