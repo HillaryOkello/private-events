@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :session
-  has_many :events, class_name: 'Event'
-  has_many :registrations, through: :registations, source: :event
+  has_many :events
+  has_many :registrations
+  has_many :user_registrations, through: :registrations
 end

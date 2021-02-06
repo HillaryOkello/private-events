@@ -1,11 +1,17 @@
 <div>
   <h3><%= @event.name %></h3>
+  <h2><%= @event.date%></h2>
   <p><%= @event.description %></p>
   <span><%= @event.creator.name %></span>
+
   <% if @event.registrations.empty? %>
     <p>Event has no events attendees</p>
   <% else %>
     <% @event.registrations.each do |registrations| %>
+      <% @user.events.previous_events.each do |event| %>
+        <h5 class = "card-title">Location: <%= event.location %> Time: <%= event.date%><%= link_to "->", event_path(event) %></h5>
+        <p class = "card-text ">Description: <%= event.description %> </p>
+      <%end%>
       <li><%=link_to registrations.name, registrations_path(registrations) %></li>
      <% end %>
   <% end %>
