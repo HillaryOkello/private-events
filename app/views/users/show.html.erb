@@ -1,24 +1,33 @@
-<h1><%= @user.name %></h1>
-<%
-=begin%>
- <h2><%= @user.created_at %></h2> 
-<%
-=end %>
+<div class="container">
+  <h1><%= @user.name %></h1>
 
 <ul>
   <% if @user.events %>
-    <h4 class = "card-title"> Past Events</h4>
-    <% previous_events.each do |event| %>
-      <li><%=link_to event.name, event_path(event) %></li> 
-      <h5 class = "card-title">Time: <%= event.date%><%= link_to "->", event_path(event) %></h5>
+
+    <h3 class = "card-title"> Past Events</h3>
+    <% @user.events.each do |event| %>
+
+      <% if event.date < Time.now %>
+        <li><%= link_to event.name, event %></li>
         <p class = "card-text ">Description: <%= event.description %> </p>
+      <% end %>
+
      <% end %>
-     <h4 class = "card-title"> Upcoming Events</h4>
+
+     <h3 class = "card-title"> Upcoming Events</h3>
+
      <% @user.events.each do |event|%>
-      <li><%= link_to event.name, event_path(event) %></li>
+
+      <% if event.date > Time.now %>
+        <li><%= link_to event.name, event %></li>
+        <p class = "card-text ">Description: <%= event.description %> </p>
+      <% end %>
+
      <% end%>
+
   <% else %>
     <p>User has no events created</p>
   <% end %>
   
 </ul>
+</div>

@@ -1,8 +1,23 @@
+<div class="container">
+<h2>Past Events</h2>
 <% @event.each do |event| %>
-  <div>
-  <h3><%= event.name %></h3>
-  <p><%= event.description %></p>
-  <span><%= event.creator.name %></span>
-  
-</div>
+  <% if event.date < Time.now %>
+      <h4><%= event.name %></h4>
+      <p><%= event.description %></p>
+      <span><%= event.creator.name %></span>
+      <h5><%= event.date%></h5>
+  <% end %> 
 <% end %>
+</div>
+
+<div class="container">
+<h2>Upcoming Events</h2>
+<% @event.each do |event| %>
+  <% if event.date > Time.now %>
+      <h4><%= event.name %></h4>
+      <p><%= event.description %></p>
+      <span><%= event.creator.name %></span>
+      <h5><%= event.date%></h5>
+  <% end %> 
+<% end %>
+</div>

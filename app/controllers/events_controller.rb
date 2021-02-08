@@ -15,7 +15,8 @@ class EventsController < ApplicationController
     @user = User.find(session[:current_user_id])
     @event = @user.events.build(event_params)
     if @event.save
-      redirect_to event_path(@event)
+      @user.events << @event
+      redirect_to @user, notice: 'New event created successfully'
     else
       render :new
     end
@@ -24,6 +25,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :date)
   end
 end

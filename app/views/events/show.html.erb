@@ -1,7 +1,7 @@
-<div>
+<div class="container">
   <h3><%= @event.name %></h3>
-  <h2><%= @event.date%></h2>
   <p><%= @event.description %></p>
+  <h5><%= @event.date%></h5>
   <span><%= @event.creator.name %></span>
 
   <% if @event.registrations.empty? %>
