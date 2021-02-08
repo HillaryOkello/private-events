@@ -2,9 +2,10 @@
   <h1><%= @user.name %></h1>
 
 <ul>
-  <% if @user.events %>
-
-    <h3 class = "card-title"> Past Events</h3>
+  <% if @user.events.empty? %>
+    <p>User has no events created</p> 
+  <% else %>
+  <h3 class = "card-title"> Past Events</h3>
     <% @user.events.each do |event| %>
 
       <% if event.date < Time.now %>
@@ -24,10 +25,6 @@
       <% end %>
 
      <% end%>
-
-  <% else %>
-    <p>User has no events created</p>
   <% end %>
-  
 </ul>
 </div>
