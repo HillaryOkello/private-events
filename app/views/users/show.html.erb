@@ -2,11 +2,11 @@
   <h1><%= @user.name %></h1>
 
 <ul>
-  <% if @user.events.empty? %>
+  <% if @user.events_created.empty? %>
     <p>User has no events created</p> 
   <% else %>
   <h3 class = "card-title"> Past Events</h3>
-    <% @user.events.each do |event| %>
+    <% @user.events_created.each do |event| %>
 
       <% if event.date < Time.now %>
         <li><%= link_to event.name, event %></li>
@@ -17,7 +17,7 @@
 
      <h3 class = "card-title"> Upcoming Events</h3>
 
-     <% @user.events.each do |event|%>
+     <% @user.events_created.each do |event|%>
 
       <% if event.date > Time.now %>
         <li><%= link_to event.name, event %></li>

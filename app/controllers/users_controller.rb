@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def new
+    @current_user = nil
     @user = User.new
   end
 
@@ -10,12 +11,12 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to @user
     else
-      render :new
+      flash.notice = 'Error'
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:events_created, :user_registrations).find(params[:id])
   end
 
   private
