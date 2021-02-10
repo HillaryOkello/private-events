@@ -15,12 +15,19 @@
         <a class="navbar-brand" href="#">Home</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+            <% if current_user %>
+              Logged in as <%= current_user.name %>.
+              <%= link_to "Log Out", signout_path %>
+            <% else %>
+              <%= link_to "Sign Up", signup_path %> or 
+              <%= link_to "Log In", login_path %>
+            <% end %>
           </div>
         </div>
       </nav>
+      
+      <%= console %>
     <%= yield %>
+    <p id=”notice”><%= notice %></p>
   </body>
 </html>

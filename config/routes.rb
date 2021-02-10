@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :show, :create]
   resources :sessions, only:[:new, :create, :destroy]
   resources :events, except: [:destroy, :edit]
+  scope :sessions do
+    get 'signup', to: 'users#new'
+    get 'login', to: 'sessions#new', as: 'login'
+    get 'signout', to: 'sessions#destroy'
+  end
 
   
-  root 'users#new'
+  root 'events#index'
 end

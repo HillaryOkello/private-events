@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  include UsersHelper
+
+  before_action :require_session, except: [:new, :create]
+
   def new
-    @current_user = nil
     @user = User.new
   end
 
@@ -8,15 +11,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # Set a session value
     if @user.save
-      session[:current_user_id] = @user.id
-      redirect_to @user
+      start_session(@user)
     else
       flash.notice = 'Error'
     end
   end
 
   def show
-    @user = User.includes(:events_created, :user_registrations).find(params[:id])
+    @user = User.find(params[:id])
   end
 
   private

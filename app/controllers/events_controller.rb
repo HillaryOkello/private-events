@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
+  before_action :require_session, except: [:index]
+  before_action :creator?, only: %i[edit destroy]
+
   def index
     @event = Event.all
+    @upcoming_events = Event.upcoming_events
+    @past_events = Event.past_events
   end
 
   def new
