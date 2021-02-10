@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   before_action :require_session, except: [:new, :create]
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -18,7 +22,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @invited_events = User.find(params[:id]).attended_events
+    # @upcoming_events = @invited_events.upcoming_events
+    # @previous_events = @invited_events.previous_events
+    @created_events = User.find(params[:id]).events
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private

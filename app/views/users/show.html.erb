@@ -1,28 +1,33 @@
+<p id=”notice”><%= notice %></p>
 <div class="container">
-  <h1><%= @user.name %></h1>
+  <h1><%= current_user.name %></h1>
   <%= link_to 'Create Event', new_event_path %>
 
 <ul>
-  <% if @user.events.empty? %>
+  <% if current_user.events.empty? %>
     <p>User has no events created</p> 
   <% else %>
   <h3 class = "card-title"> Past Events</h3>
-    <% @user.events.each do |event| %>
+    <% current_user.events.each do |event| %>
 
       <% if event.date < Time.now %>
         <li><%= link_to event.name, event %></li>
         <p class = "card-text ">Description: <%= event.description %> </p>
+      <% else %>
+        <p> No past events found </p>
       <% end %>
 
      <% end %>
 
      <h3 class = "card-title"> Upcoming Events</h3>
 
-     <% @user.events.each do |event|%>
+     <% current_user.events.each do |event|%>
 
       <% if event.date > Time.now %>
         <li><%= link_to event.name, event %></li>
         <p class = "card-text ">Description: <%= event.description %> </p>
+      <% else %>
+        <p> No future events found </p>
       <% end %>
 
      <% end%>
