@@ -1,10 +1,20 @@
-<h1>Create your Event</h1>
-<%= form_for @event do |f| %>
-  <%= f.label :name %> <br>
-  <%= f.text_field :name %><br>
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
-  <%= f.submit 'Create Event' %>
-<% end %>
+<h1 class="text-center">Create your Event</h1>
+  
+    <%= form_for @event do |f| %>
+    <div class="container">
+      <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control", id: "exampleFormControlTextarea1", rows: "3" %><br>
+    </div>
+    <div class="form-group">
+      <%= f.label :date %>
+      <%= f.date_field :date %><br>
+    </div>
+      <%= f.submit 'Create Event' %>
+    </div>    
+    <% end %>
+
