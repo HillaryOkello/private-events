@@ -8,9 +8,6 @@ module ApplicationHelper
   end
 
   def require_session
-    unless current_user
-      redirect_to new_user_path, :alert => 'Sign Up or Sign In to access this feature!'
-    end
+    redirect_to new_user_path, alert: 'Sign Up or Sign In to access this feature!' unless current_user
   end
-
 end

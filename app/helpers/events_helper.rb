@@ -32,14 +32,13 @@ module EventsHelper
   end
 
   def render_invite_controls(event)
-    if event.creator == current_user
-      render 'events/partials/invite_controls', event: event
-    end
+    render 'events/partials/invite_controls', event: event if event.creator == current_user
   end
 
   def creator?
     set_event
     return if current_user.id == @event.user_id
+
     flash[:alert] = 'Unauthorized request'
     redirect_to root_path
   end

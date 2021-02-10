@@ -8,7 +8,7 @@ module UsersHelper
       session[:user_id] = user.id
       redirect_to user_path(current_user.id), notice: "User #{user.name} account signed up successfully!"
     else
-      flash.now[:alert] = "Username is invalid"
+      flash.now[:alert] = 'Username is invalid'
     end
   end
 
@@ -30,5 +30,4 @@ module UsersHelper
           <%= link_to 'Back', event_path(id: params[:event_id]), class: \"btn btn-light w-100 my-3\" %>"
     render inline: html_out, locals: { user: user }
   end
-
 end
