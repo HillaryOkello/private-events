@@ -1,7 +1,11 @@
-<p id=”notice”><%= notice %></p>
+<%
+=begin%>
+ <p id=”notice”><%= notice %></p> 
+<%
+=end%>
 <div class="container">
   <h1><%= current_user.name %></h1>
-  <%= link_to 'Create Event', new_event_path %>
+  <button><%= link_to 'Create Event', new_event_path %></button>
 
 <ul>
   <% if current_user.events.empty? %>
@@ -13,7 +17,7 @@
       <% if event.date < Time.now %>
         <li><%= link_to event.name, event %></li>
         <p class = "card-text ">Description: <%= event.description %> </p>
-      <% else %>
+      <% elsif current_user.events.empty? %>
         <p> No past events found </p>
       <% end %>
 
@@ -26,7 +30,7 @@
       <% if event.date > Time.now %>
         <li><%= link_to event.name, event %></li>
         <p class = "card-text ">Description: <%= event.description %> </p>
-      <% else %>
+      <% elsif current_user.events.empty?  %>
         <p> No future events found </p>
       <% end %>
 
