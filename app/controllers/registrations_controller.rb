@@ -12,5 +12,4 @@ class RegistrationsController < ApplicationController
       redirect_to event_path(@invitation.event_id), alert: 'Error creating invitation!'
     end
   end
-
 end
