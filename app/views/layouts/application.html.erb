@@ -11,6 +11,23 @@
   </head>
 
   <body>
+      <nav class="navbar bg-primary d-flex">
+        <a class="navbar-brand">Home</a>
+        <div>
+          <div class="navbar-nav d-flex flex-row">
+            <% if current_user %>
+              <h5 class="m-1">Logged in as <%= current_user.name %></h5>
+              <p class="m-1"><%= link_to "Log Out", signout_path %></p>
+            <% else %>
+              <%= link_to "Sign Up", signup_path, class:"p-3" %>
+              <%= link_to "Log In", login_path, class:"p-3" %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+      
+      <%= console %>
     <%= yield %>
+    <p id=”notice”><%= notice %></p>
   </body>
 </html>
