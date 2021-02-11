@@ -8,11 +8,11 @@
     <p>Event has no events attendees</p>
   <% else %>
     <% @event.registrations.each do |registrations| %>
-      <% @user.events.each do |event| %>
-        <h5 class = "card-title">Location: <%= event.location %> Time: <%= event.date%><%= link_to "->", event_path(event) %></h5>
+      <% current_user.events.each do |event| %>
+        <h5 class = "card-title">Time: <%= event.date%><%= link_to "->", event_path(event) %></h5>
         <p class = "card-text ">Description: <%= event.description %> </p>
       <%end%>
-      <li><%=link_to registrations.name, registrations_path(registrations) %></li>
+      
      <% end %>
   <% end %>
 </div>

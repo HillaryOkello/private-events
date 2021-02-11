@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @invitation = Registration.create(user_id: params[:user_id], event_id: params[:event_id])
+    @invitation = Registration.create(registratation_params)
     if @invitation.save
       redirect_to event_path(@invitation.event_id), notice: 'Invitation sent'
     else
